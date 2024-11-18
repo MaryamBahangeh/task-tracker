@@ -22,7 +22,7 @@ datalist,
 output,
 option,
 optgroup {
-  font-family: inherit;
+  font: inherit;
 }
 
 body {

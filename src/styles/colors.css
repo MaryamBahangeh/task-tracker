@@ -9,7 +9,7 @@
   --color-gray-15: hsl(0deg 0% 15%);
   --color-gray-10: hsl(0deg 0% 10%);
 
-  --color-primary: #6c63ff;
+  --color-primary: hsl(243, 100%, 69%);
   --color-body-background: var(--color-gray-97);
   --color-body-foreground: var(--color-gray-15);
 }
