@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <h1>Hello, friend!</h1>
-      <Input />
+      <Input icon="A" />
     </>
   );
 }

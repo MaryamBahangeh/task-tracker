@@ -1,7 +1,9 @@
-.input {
+.box {
   color: var(--color-primary);
 
-  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 
   border: 1px solid var(--color-primary);
   border-radius: var(--border-radius);
@@ -11,9 +13,26 @@
 
   line-height: 1;
 
-  &:focus {
-    box-shadow: var(--box-shadow-subttle);
+  input {
+    flex: 1 1 0;
 
-    outline: none;
+    background-color: transparent;
+
+    padding: 0.75rem 1rem;
+
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .icon {
+    block-size: 1em;
+    inline-size: 1em;
+  }
+
+  &:focus-within {
+    box-shadow: var(--box-shadow-subttle);
   }
 }
