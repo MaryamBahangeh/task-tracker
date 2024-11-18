@@ -17,6 +17,7 @@
     flex: 1 1 0;
 
     background-color: transparent;
+    color: inherit;
 
     padding: 0.75rem 1rem;
 
@@ -28,8 +29,9 @@
   }
 
   .icon {
-    block-size: 1em;
-    inline-size: 1em;
+    padding-inline: 1rem;
+
+    font-size: 1.5em;
   }
 
   &:focus-within {

@@ -1,9 +1,9 @@
-import { ReactElement } from "react";
+import { ReactElement, SVGProps } from "react";
 
 import styles from "./Input.module.css";
 
 type Props = {
-  icon?: string;
+  icon?: ReactElement<SVGProps<SVGSVGElement>>;
 };
 
 export default function Input({ icon }: Props): ReactElement {
