@@ -1,0 +1,47 @@
+.list {
+  display: grid;
+  gap: 1rem;
+
+  > li {
+    display: grid;
+    grid-template-areas: "checkbox name actions" "divider divider divider";
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+
+    input {
+      grid-area: checkbox;
+
+      block-size: 1.5rem;
+      inline-size: 1.5rem;
+    }
+
+    .name {
+      grid-area: name;
+
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    .actions {
+      grid-area: actions;
+
+      display: flex;
+      gap: 1rem;
+
+      margin-inline-start: auto;
+    }
+
+    &:not(:last-child) {
+      &::after {
+        grid-area: divider;
+
+        content: "";
+
+        opacity: 0.5;
+
+        border-block-start: 1px solid var(--color-primary);
+      }
+    }
+  }
+}
