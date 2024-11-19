@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-import IconButton from "../IconButton/IconButton.tsx";
+import IconButton, { Variant } from "../IconButton/IconButton.tsx";
 
 import MingcuteEdit2Line from "../../icons/MingcuteEdit2Line.tsx";
 import MingcuteDelete2Line from "../../icons/MingcuteDelete2Line.tsx";
@@ -18,11 +18,21 @@ export default function List({ tasks }: Props): ReactElement {
     <ul className={styles.list}>
       {tasks.map((task, index) => (
         <li key={index}>
-          <input type="checkbox" />
-          <div className={styles.name}>{task.name}</div>
+          <label>
+            <input type="checkbox" />
+            <div className={styles.name}>{task.name}</div>
+          </label>
           <div className={styles.actions}>
-            <IconButton icon={<MingcuteEdit2Line />} />
-            <IconButton icon={<MingcuteDelete2Line />} />
+            <IconButton
+              className={styles.edit}
+              variant={Variant.GHOST}
+              icon={<MingcuteEdit2Line />}
+            />
+            <IconButton
+              className={styles.remove}
+              variant={Variant.GHOST}
+              icon={<MingcuteDelete2Line />}
+            />
           </div>
         </li>
       ))}

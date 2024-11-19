@@ -2,34 +2,58 @@
   display: grid;
   gap: 1rem;
 
+  margin-block-start: 2rem;
+
   > li {
     display: grid;
-    grid-template-areas: "checkbox name actions" "divider divider divider";
-    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "label actions" "divider divider";
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: 1rem;
 
-    input {
-      grid-area: checkbox;
+    label {
+      grid-area: label;
 
-      block-size: 1.5rem;
-      inline-size: 1.5rem;
-    }
+      display: flex;
+      gap: 1rem;
 
-    .name {
-      grid-area: name;
+      cursor: pointer;
 
-      font-size: 1.25rem;
-      font-weight: 500;
+      input {
+        block-size: 1.5rem;
+        inline-size: 1.5rem;
+      }
+
+      .name {
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
     }
 
     .actions {
       grid-area: actions;
 
+      opacity: 0;
+
       display: flex;
       gap: 1rem;
 
       margin-inline-start: auto;
+
+      .edit {
+        --button-color-hover: var(--color-primary-hover);
+      }
+
+      .remove {
+        --button-color-hover: var(--color-danger-hover);
+      }
+    }
+
+    &:hover,
+    &:focus-within {
+      .actions {
+        opacity: 1;
+      }
     }
 
     &:not(:last-child) {

@@ -12,6 +12,9 @@
   --color-primary: hsl(243, 100%, 69%);
   --color-primary-hover: hsl(243, 67%, 59%);
 
+  --color-danger: hsl(0, 100%, 50%);
+  --color-danger-hover: hsl(0, 100%, 45%);
+
   --color-body-background: var(--color-gray-97);
   --color-body-foreground: var(--color-gray-15);
 }
