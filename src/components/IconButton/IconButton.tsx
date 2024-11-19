@@ -1,4 +1,4 @@
-import { ReactElement, SVGProps } from "react";
+import { ReactElement, SVGProps, ComponentProps } from "react";
 
 import clsx from "clsx";
 
@@ -19,7 +19,7 @@ export enum Size {
   LARGE = "large",
 }
 
-type Props = {
+type Props = Omit<ComponentProps<"button">, "children" | "className"> & {
   icon: ReactElement<SVGProps<SVGSVGElement>>;
   className?: string;
   variant?: Variant;
@@ -33,6 +33,7 @@ export default function IconButton({
   variant = Variant.SOLID,
   shape = Shape.SQUARE,
   size = Size.MEDIUM,
+  ...rest
 }: Props): ReactElement {
   return (
     <button
@@ -43,6 +44,7 @@ export default function IconButton({
         styles[size],
         className,
       )}
+      {...rest}
     >
       {icon}
     </button>
