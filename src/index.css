@@ -28,4 +28,8 @@ optgroup {
 body {
   background-color: var(--color-body-background);
   color: var(--color-body-foreground);
+
+  inline-size: min(50rem, 100% - 4rem);
+
+  margin-inline: auto;
 }
