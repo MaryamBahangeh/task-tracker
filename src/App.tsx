@@ -5,8 +5,9 @@ import List from "./components/List/List.tsx";
 
 import "./App.css";
 import { Task } from "./models/task.ts";
+import { useState } from "react";
 
-const tasks: Task[] = [
+const DEFAULT_TASKS: Task[] = [
   {
     name: "Note #1",
     isDone: false,
@@ -22,6 +23,12 @@ const tasks: Task[] = [
 ];
 
 function App() {
+  const [tasks, setTasks] = useState<Task[]>(DEFAULT_TASKS);
+
+  const createTask = (name: string): void => {
+    setTasks((old) => [...old, { name, isDone: false }]);
+  };
+
   return (
     <>
       <Header />
@@ -29,7 +36,7 @@ function App() {
         <Toolbar />
         <List tasks={tasks} />
       </main>
-      <Footer />
+      <Footer createTask={createTask} />
     </>
   );
 }

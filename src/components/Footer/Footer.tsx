@@ -7,7 +7,11 @@ import MingcuteAddLine from "../../icons/MingcuteAddLine.tsx";
 
 import styles from "./Footer.module.css";
 
-export default function Footer(): ReactElement {
+type Props = {
+  createTask: (name: string) => void;
+};
+
+export default function Footer({ createTask }: Props): ReactElement {
   const modalRef = useRef<HTMLDialogElement>(null);
 
   const createButtonClickHandler = (): void => {
@@ -26,7 +30,7 @@ export default function Footer(): ReactElement {
         size={Size.LARGE}
         onClick={createButtonClickHandler}
       />
-      <CreateTaskModal ref={modalRef} />
+      <CreateTaskModal ref={modalRef} createTask={createTask} />
     </footer>
   );
 }
