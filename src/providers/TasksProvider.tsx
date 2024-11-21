@@ -5,12 +5,15 @@ import {
   useEffect,
   useState,
 } from "react";
+
+import { v4 as uuidv4 } from "uuid";
+
 import { Task } from "../models/task.ts";
 
 type ContextValue = {
   tasks: Task[];
   createTask: (name: string) => void;
-  toggleIsDone: (index: number, isDone: boolean) => void;
+  toggleIsDone: (id: string, isDone: boolean) => void;
 };
 
 export const TasksContext = createContext<ContextValue>({
@@ -39,13 +42,13 @@ export default function TasksProvider({ children }: Props): ReactElement {
   }, [tasks]);
 
   const createTask = (name: string): void => {
-    setTasks((old) => [...old, { name, isDone: false }]);
+    setTasks((old) => [...old, { id: uuidv4(), name, isDone: false }]);
   };
 
-  const toggleIsDone = (index: number, isDone: boolean): void => {
+  const toggleIsDone = (id: string, isDone: boolean): void => {
     setTasks((old) =>
-      old.map((x, i) => {
-        if (i === index) {
+      old.map((x) => {
+        if (x.id === id) {
           return { ...x, isDone };
         }
 
