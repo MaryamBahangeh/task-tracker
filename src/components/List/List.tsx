@@ -1,4 +1,4 @@
-import { ReactElement, useContext } from "react";
+import { ReactElement, useContext, useMemo } from "react";
 
 import { TasksContext } from "../../providers/TasksProvider.tsx";
 
@@ -17,13 +17,15 @@ type Props = {
 export default function List({ filters }: Props): ReactElement {
   const { tasks, toggleIsDone } = useContext(TasksContext);
 
-  const filteredTasks = tasks.filter((task) => {
-    if (!filters.name) {
-      return true;
-    }
+  const filteredTasks = useMemo(() => {
+    return tasks.filter((task) => {
+      if (!filters.name) {
+        return true;
+      }
 
-    return task.name.toLowerCase().includes(filters.name.toLowerCase());
-  });
+      return task.name.toLowerCase().includes(filters.name.toLowerCase());
+    });
+  }, [filters]);
 
   return (
     <ul className={styles.list}>
