@@ -2,6 +2,7 @@ import {
   createContext,
   PropsWithChildren,
   ReactElement,
+  useEffect,
   useState,
 } from "react";
 import { Task } from "../models/task.ts";
@@ -18,25 +19,24 @@ export const TasksContext = createContext<ContextValue>({
   toggleIsDone: () => {},
 });
 
-const DEFAULT_TASKS: Task[] = [
-  {
-    name: "Note #1",
-    isDone: false,
-  },
-  {
-    name: "Note #2",
-    isDone: true,
-  },
-  {
-    name: "Note #3",
-    isDone: false,
-  },
-];
-
 type Props = PropsWithChildren;
 
+const LOCAL_STORAGE_KEY = "tasks";
+
 export default function TasksProvider({ children }: Props): ReactElement {
-  const [tasks, setTasks] = useState<Task[]>(DEFAULT_TASKS);
+  const [tasks, setTasks] = useState<Task[]>((): Task[] => {
+    const content = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+    if (!content) {
+      return [];
+    }
+
+    return JSON.parse(content);
+  });
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tasks));
+  }, [tasks]);
 
   const createTask = (name: string): void => {
     setTasks((old) => [...old, { name, isDone: false }]);
