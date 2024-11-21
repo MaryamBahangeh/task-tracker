@@ -9,11 +9,13 @@ import { Task } from "../models/task.ts";
 type ContextValue = {
   tasks: Task[];
   createTask: (name: string) => void;
+  toggleIsDone: (index: number, isDone: boolean) => void;
 };
 
 export const TasksContext = createContext<ContextValue>({
   tasks: [],
   createTask: () => {},
+  toggleIsDone: () => {},
 });
 
 const DEFAULT_TASKS: Task[] = [
@@ -40,8 +42,20 @@ export default function TasksProvider({ children }: Props): ReactElement {
     setTasks((old) => [...old, { name, isDone: false }]);
   };
 
+  const toggleIsDone = (index: number, isDone: boolean): void => {
+    setTasks((old) =>
+      old.map((x, i) => {
+        if (i === index) {
+          return { ...x, isDone };
+        }
+
+        return x;
+      }),
+    );
+  };
+
   return (
-    <TasksContext.Provider value={{ tasks, createTask }}>
+    <TasksContext.Provider value={{ tasks, createTask, toggleIsDone }}>
       {children}
     </TasksContext.Provider>
   );
