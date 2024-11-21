@@ -1,18 +1,28 @@
-import { ForwardedRef, forwardRef, ReactElement, useRef } from "react";
+import {
+  ForwardedRef,
+  forwardRef,
+  ReactElement,
+  useContext,
+  useRef,
+} from "react";
 
 import useMergedRef from "@react-hook/merged-ref";
+
+import { TasksContext } from "../../providers/TasksProvider.tsx";
 
 import Button, { Variant } from "../Button/Button.tsx";
 import Input from "../Input/Input.tsx";
 
 import styles from "./CreateTaskModal.module.css";
 
-type Props = { createTask: (name: string) => void };
+type Props = {};
 
 function CreateTaskModal(
-  { createTask }: Props,
+  _: Props,
   ref?: ForwardedRef<HTMLDialogElement>,
 ): ReactElement {
+  const { createTask } = useContext(TasksContext);
+
   const otherRef = useRef<HTMLDialogElement>(null);
   const multiRef = useMergedRef(ref ?? null, otherRef);
 

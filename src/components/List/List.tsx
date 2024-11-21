@@ -1,19 +1,17 @@
-import { ReactElement } from "react";
+import { ReactElement, useContext } from "react";
+
+import { TasksContext } from "../../providers/TasksProvider.tsx";
 
 import IconButton, { Variant } from "../IconButton/IconButton.tsx";
 
 import MingcuteEdit2Line from "../../icons/MingcuteEdit2Line.tsx";
 import MingcuteDelete2Line from "../../icons/MingcuteDelete2Line.tsx";
 
-import { Task } from "../../models/task.ts";
-
 import styles from "./List.module.css";
 
-type Props = {
-  tasks: Task[];
-};
+export default function List(): ReactElement {
+  const { tasks } = useContext(TasksContext);
 
-export default function List({ tasks }: Props): ReactElement {
   return (
     <ul className={styles.list}>
       {tasks.map((task, index) => (
